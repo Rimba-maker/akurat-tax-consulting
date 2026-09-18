@@ -2,6 +2,15 @@
 import "../styles/global.css";
 import Stamp from "../components/Stamp.astro";
 
+const pain = [
+  { title: "Bingung Lapor SPT Bulanan/Tahunan", problem: "Salah lapor = denda Rp100k - jutaan per bulan.", fix: "Kami handle semua filing tepat waktu.", r: "-1.2deg" },
+  { title: "Pajak Selalu Lebih Besar Dari Kompetitor", problem: "Mungkin Anda belum optimalisasi.", fix: "Kami analisa struktur pajak Anda.", r: "1.6deg", carbon: true },
+  { title: "Dapat Surat Tagihan / SP2DK dari KPP", problem: "Butuh response cepat & tepat.", fix: "Tim kami siap handle dispute resolution.", r: "1deg", letter: true },
+  { title: "Mau Restitusi, Tapi Takut Diperiksa", problem: "Takut restitusi berujung pemeriksaan?", fix: "Kami bantu strategi restitusi yang aman dengan persiapan dokumen lengkap.", r: "-1.4deg" },
+  { title: "Bisnis Multi-Channel, Reporting Kompleks", problem: "Online + offline = kompleksitas.", fix: "Kami bikin reporting jadi sederhana.", r: "1.2deg" },
+  { title: "Setup PT Baru, Bingung Struktur Pajak", problem: "PPh Badan vs PPh Final?", fix: "Kami bantu pilih struktur yang tepat.", r: "-0.8deg", carbon: true },
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -129,6 +138,37 @@ const ld = {
               <li class="leader"><span>Kantor</span><i></i><b>JKT · SBY · BDG</b></li>
             </ul>
             <div class="barcode" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pain points -->
+      <section class="sec sec--graph" id="masalah">
+        <div class="wrap">
+          <div class="head">
+            <h2 class="display h2">Kenali Tanda Bisnis Anda Butuh Konsultan Pajak</h2>
+            <p class="lede" style="--d:100ms">Masalah pajak yang sering dihadapi bisnis, dan bagaimana kami membantu menyelesaikannya.</p>
+          </div>
+          <div class="pain">
+            <div class="pain__print rv">
+              <figure class="print" style="margin:0">
+                <span class="tape"></span>
+                <img src="/img/pain-need-help.jpg" alt="Formulir pajak dengan sticky note bertuliskan Need help?" width="1000" height="1500" loading="lazy" />
+                <figcaption class="pen">familier? itu tandanya.</figcaption>
+              </figure>
+            </div>
+            {pain.map((p, i) => (
+              <article class={`slip rv rv--tilt ${p.carbon ? "slip--carbon" : ""} ${p.letter ? "slip--letter" : ""}`} style={`--r:${p.r};--d:${(i % 2) * 120}ms`}>
+                <h3 class="display h3">{p.title}</h3>
+                <p>{p.problem}</p>
+                <span class="pen">{p.fix}</span>
+                {p.letter && <span class="stamp-box" style="position:absolute;right:1rem;bottom:1rem;rotate:-9deg">SEGERA</span>}
+              </article>
+            ))}
+            <div class="pain__close rv">
+              <p class="pen">Salah satunya terasa akrab? Ceritakan ke kami.</p>
+              <a href="#konsultasi" class="btn btn--ink">Jadwalkan Konsultasi <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+            </div>
           </div>
         </div>
       </section>
