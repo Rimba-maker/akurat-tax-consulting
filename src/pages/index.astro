@@ -60,6 +60,13 @@ const team = [
   { name: "Indra Wijaya, S.H., BKP", role: "Tax Dispute Resolution", chips: ["Ex-DJP", "15+ tahun"], img: "team-indra", r: "1.6deg", pos: "50% 22%" },
 ];
 
+const steps = [
+  { t: "Konsultasi Awal", d: "Diskusi 30 menit, analisa kebutuhan bisnis.", pen: "gratis!", r: "-9deg" },
+  { t: "Tax Assessment", d: "Review SPT 2 tahun terakhir, identifikasi risiko.", r: "6deg" },
+  { t: "Proposal & Kontrak", d: "Penawaran paket, scope, timeline, kontrak NDA.", r: "-5deg" },
+  { t: "Onboarding & Service", d: "Data collection, akses sistem, kickoff meeting.", r: "8deg" },
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -355,6 +362,35 @@ const ld = {
           </div>
           <!-- TODO: replace stock portraits and sample profiles with the real consultants before launch (see PRODUCT.md) -->
           <p class="team__note">Foto: ilustrasi.</p>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="sec sec--pad" id="proses">
+        <div class="wrap proc">
+          <div>
+            <div class="head">
+              <h2 class="display h2">Bagaimana Kami Memulai</h2>
+              <p class="lede" style="--d:100ms">4 langkah mudah untuk mulai bekerja sama dengan Akurat.</p>
+            </div>
+            <ol class="steps" data-inview>
+              {steps.map((s, i) => (
+                <li class="step rv" style={`--r:${s.r};--d:${i * 220}ms`}>
+                  <span class="step__no" aria-hidden="true">{i + 1}</span>
+                  <div>
+                    <h3 class="display h3">{s.t}{s.pen && <span class="pen">{s.pen}</span>}</h3>
+                    <p>{s.d}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <figure class="proof proc__print rv">
+            <span class="marks" aria-hidden="true"></span>
+            <svg class="reg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6" /><path d="M12 1v22M1 12h22" /></svg>
+            <img src="/img/process-meeting.jpg" alt="Konsultan dan klien berdiskusi di meja rapat penuh dokumen" width="1100" height="733" loading="lazy" />
+            <figcaption class="proof__cap pen">ngobrol dulu</figcaption>
+          </figure>
         </div>
       </section>
     </main>
