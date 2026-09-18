@@ -15,7 +15,12 @@ dist/
 Thumbs.db
 *.log
 
-# Local tool state
+# Internal build docs and AI tool state (local only, not published)
+# PRODUCT.md and DESIGN.md stay at the root because design tooling resolves them there.
+_internal/
+PRODUCT.md
+DESIGN.md
+.impeccable/
+CLAUDE.md
 .claude/
-.impeccable/review/
-.impeccable/mocks/
+.agents/
