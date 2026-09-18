@@ -53,6 +53,13 @@ const why = [
   ["No Hidden Fees", "Harga di awal sesuai paket, no surprise charge."],
 ];
 
+const team = [
+  { name: "Drs. Bambang Santoso, Ak., BKP", role: "Managing Partner", chips: ["USKP-B", "Ex-Big 4", "18+ tahun"], img: "team-bambang", r: "-1.5deg", pos: "50% 25%" },
+  { name: "Maya Hartono, S.E., M.Ak., BKP", role: "Tax Compliance Lead", chips: ["USKP-A", "Ex-KAP Big 4"], img: "team-maya", r: "1.2deg", pos: "28% 20%" },
+  { name: "Reza Pradana, S.E., Ak., M.M.", role: "Tax Planning Specialist", chips: ["MBA", "12+ tahun"], img: "team-reza", r: "-1deg", pos: "50% 30%" },
+  { name: "Indra Wijaya, S.H., BKP", role: "Tax Dispute Resolution", chips: ["Ex-DJP", "15+ tahun"], img: "team-indra", r: "1.6deg", pos: "50% 22%" },
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -325,6 +332,29 @@ const ld = {
             ))}
             <Stamp id="ring-why" class="stamp" center="AKURAT" sub="DISETUJUI" ring="SEMUA TERPENUHI • KONSULTAN BERSERTIFIKAT • " decor />
           </div>
+        </div>
+      </section>
+
+      <!-- Team -->
+      <section class="sec sec--graph" id="tim">
+        <div class="wrap">
+          <div class="head">
+            <h2 class="display h2">Tim Konsultan Bersertifikat</h2>
+            <p class="lede" style="--d:100ms">Didukung 12 konsultan &amp; 8 support staff yang siap membantu Anda.</p>
+          </div>
+          <div class="team">
+            {team.map((m, i) => (
+              <article class="sheet dossier rv rv--tilt" style={`--r:${m.r};--pos:${m.pos};--d:${i * 110}ms`}>
+                <svg class="clip" viewBox="0 0 26 64" aria-hidden="true"><use href="#i-clip" /></svg>
+                <img src={`/img/${m.img}.jpg`} alt={`Foto ${m.name}`} width="700" height="875" loading="lazy" />
+                <h3 class="display h3">{m.name}</h3>
+                <p class="dossier__role">{m.role}</p>
+                <div class="chips">{m.chips.map((c) => <span class="chip">{c}</span>)}</div>
+              </article>
+            ))}
+          </div>
+          <!-- TODO: replace stock portraits and sample profiles with the real consultants before launch (see PRODUCT.md) -->
+          <p class="team__note">Foto: ilustrasi.</p>
         </div>
       </section>
     </main>
