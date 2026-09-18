@@ -76,6 +76,12 @@ const faq = [
   ["Bagaimana sistem fee Akurat?", "Monthly retainer untuk layanan berulang, project-based untuk layanan sekali jalan (audit, restitusi). Bisa hybrid sesuai kebutuhan."],
 ];
 
+const posts = [
+  { t: "Tax Planning Akhir Tahun: 5 Strategi Legal Hemat Pajak 2026", d: "Optimalkan pajak Anda sebelum tutup buku dengan strategi yang legal.", img: "blog-1", alt: "Tangan memegang ponsel kalkulator di atas dokumen pajak" },
+  { t: "Apa Itu UU HPP & Bagaimana Dampaknya untuk UMKM", d: "Perubahan regulasi terbaru yang wajib dipahami pelaku UMKM.", img: "blog-2", alt: "Meja kerja akuntan dengan dokumen, uang tunai, dan kalkulator" },
+  { t: "Cara Lapor PPh 21 Karyawan dengan Benar di e-Bupot", d: "Panduan langkah demi langkah pelaporan PPh 21 via e-Bupot.", img: "blog-3", alt: "Laptop menampilkan grafik di samping dokumen laporan" },
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -445,6 +451,40 @@ const ld = {
                 <p>{a}</p>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Blog -->
+      <section class="sec sec--graph" id="blog">
+        <div class="wrap">
+          <div class="head">
+            <h2 class="display h2">Tax Resources</h2>
+            <p class="lede" style="--d:100ms">Artikel dan panduan pajak terbaru untuk bisnis Anda.</p>
+          </div>
+          <div class="posts">
+            <!-- TODO: point the post links at real article pages once the blog exists -->
+            <a href="#blog" aria-disabled="true" class="post post--lead rv">
+              <figure class="lead-img">
+                <svg class="clip" viewBox="0 0 26 64" aria-hidden="true"><use href="#i-clip" /></svg>
+                <div class="lead-img__frame"><img src={`/img/${posts[0].img}.jpg`} alt={posts[0].alt} width="1100" height="733" loading="lazy" /></div>
+              </figure>
+              <h3 class="display h3">{posts[0].t}</h3>
+              <p>{posts[0].d}</p>
+              <span class="go">Baca selengkapnya <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow" /></svg></span>
+            </a>
+            <div>
+              {posts.slice(1).map((p) => (
+                <a href="#blog" aria-disabled="true" class="post post--row">
+                  <img src={`/img/${p.img}.jpg`} alt={p.alt} width="900" height="600" loading="lazy" />
+                  <div>
+                    <h3 class="display h3">{p.t}</h3>
+                    <p>{p.d}</p>
+                    <span class="go">Baca selengkapnya <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow" /></svg></span>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
