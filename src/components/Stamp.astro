@@ -1,0 +1,12 @@
+---
+// Rubber stamp: double ring, ring text on a path, word in the middle.
+const { id, ring = "PERHITUNGAN DIVERIFIKASI • KONSULTAN BERSERTIFIKAT • ", center = "AKURAT", sub, label, decor = false, class: cls = "" } = Astro.props;
+---
+<svg class={`stamp-svg ${cls}`} viewBox="0 0 160 160" role={decor ? undefined : "img"} aria-hidden={decor ? "true" : undefined} aria-label={decor ? undefined : (label ?? `Stempel ${center}`)}>
+  <defs><path id={id} d="M80,80 m-62,0 a62,62 0 1,1 124,0 a62,62 0 1,1 -124,0" /></defs>
+  <circle cx="80" cy="80" r="76" fill="none" stroke="currentColor" stroke-width="5" />
+  <circle cx="80" cy="80" r="46" fill="none" stroke="currentColor" stroke-width="2" />
+  <text class="stamp-ring"><textPath href={`#${id}`} textLength="385" lengthAdjust="spacing">{ring}</textPath></text>
+  <text x="80" y={sub ? 84 : 92} text-anchor="middle" class="stamp-word">{center}</text>
+  {sub && <text x="80" y="104" text-anchor="middle" class="stamp-sub">{sub}</text>}
+</svg>
