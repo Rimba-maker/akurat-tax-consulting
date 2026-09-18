@@ -20,6 +20,19 @@ const services = [
   { name: "Tax for Expatriate & Cross-Border", img: "svc-expat", alt: "Jabat tangan di atas dokumen kesepakatan bisnis", r: "-2deg", items: ["Tax filing untuk WNA bekerja di Indonesia", "Tax treaty analysis", "Transfer pricing documentation"] },
 ];
 
+const plans = [
+  { key: "Starter", price: "3,5 jt", unit: "/ bulan", who: "Untuk UMKM omzet < Rp 4,8 M/tahun", cta: "Pilih Paket", btn: "btn--ink", items: ["Pelaporan SPT bulanan (PPh 21, 25, PPN)", "Pelaporan SPT tahunan", "Konsultasi WhatsApp jam kerja", "Monthly tax compliance report", "Email & call support"] },
+  { key: "Business", price: "8 jt", unit: "/ bulan", who: "Untuk perusahaan menengah omzet Rp\u00a05\u00a0s.d.\u00a050\u00a0M/tahun", cta: "Pilih Paket", btn: "", pop: true, items: ["Semua Starter +", "Tax planning quarterly review", "Audit support", "Dedicated tax consultant", "Priority response < 4 jam", "2x site visit / tahun"] },
+  { key: "Enterprise", price: "15 jt+", unit: "/ bulan", who: "Untuk perusahaan besar / multi-entity", cta: "Hubungi Kami", btn: "btn--ink", carbon: true, items: ["Semua Business +", "Transfer pricing analysis", "Tax due diligence", "Custom reporting dashboard", "24/7 emergency support", "Quarterly executive review"] },
+];
+
+const once = [
+  ["SPT Tahunan one-time", "mulai Rp 1,5 jt"],
+  ["Restitusi case (success fee)", "mulai Rp 5 jt"],
+  ["Audit defense", "mulai Rp 7,5 jt"],
+  ["Tax setup PT baru", "mulai Rp 4 jt"],
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -216,6 +229,34 @@ const ld = {
                   </figure>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Packages -->
+      <section class="sec sec--graph" id="paket">
+        <div class="wrap">
+          <div class="head">
+            <h2 class="display h2">Paket Layanan</h2>
+            <p class="lede" style="--d:100ms">Pilih sesuai skala bisnis. Semua paket termasuk konsultasi WhatsApp &amp; monthly report.</p>
+          </div>
+          <div class="plans">
+            {plans.map((p, i) => (
+              <article class={`plan rv ${p.pop ? "plan--pop on-cobalt on-dark" : ""} ${p.carbon ? "plan--carbon" : ""}`} style={`--d:${i * 110}ms`}>
+                {p.pop && <span class="plan__tab label">Most Popular</span>}
+                <h3 class="display h3">{p.key}</h3>
+                <p class="plan__for">{p.who}</p>
+                <div class="plan__price num"><small>Rp</small>{p.price}<small>{p.unit}</small></div>
+                <ul class="tick-list">{p.items.map((it) => <li>{it}</li>)}</ul>
+                <a href="#konsultasi" class={`btn ${p.btn}`}>{p.cta} <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              </article>
+            ))}
+          </div>
+          <div class="once-wrap rv rv--drop">
+            <div class="once sheet">
+              <h3 class="label">Butuh layanan sekali jalan?</h3>
+              <ul>{once.map(([n, v]) => <li class="leader"><span>{n}</span><i></i><b class="num">{v}</b></li>)}</ul>
             </div>
           </div>
         </div>
