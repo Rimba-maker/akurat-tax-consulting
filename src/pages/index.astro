@@ -44,6 +44,15 @@ const industries = [
   { t: "t8", name: "Profesional Services", tax: "Konsultan, akuntan, pengacara", img: "ind-profesional", alt: "Profesional memeriksa dokumen di meja kerja dekat jendela" },
 ];
 
+const why = [
+  ["Sertifikasi Resmi USKP A & B", "Lisensi konsultan pajak Kementerian Keuangan."],
+  ["Response Time < 4 Jam", "Pertanyaan urgent dibalas dalam 4 jam kerja."],
+  ["Transparent Reporting", "Dashboard online, lihat status compliance real-time."],
+  ["Dedicated Consultant", "Satu PIC untuk bisnis Anda, no rotation."],
+  ["Confidentiality NDA", "Data klien dilindungi NDA tertulis."],
+  ["No Hidden Fees", "Harga di awal sesuai paket, no surprise charge."],
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -290,6 +299,31 @@ const ld = {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Akurat -->
+      <section class="sec sec--cobalt on-dark" id="mengapa">
+        <div class="wrap why">
+          <div>
+            <h2 class="display h2">Kenapa 200+ Bisnis <span class="marker marker--full">Percaya Kami</span></h2>
+            <p class="lede" style="--d:100ms">Kami tidak hanya mengurus pajak. Kami membangun kepercayaan, satu checklist demi satu checklist.</p>
+            <figure class="print why__print rv" style="margin-bottom:0">
+              <span class="tape"></span>
+              <img src="/img/why-dashboard.jpg" alt="Laptop menampilkan dashboard laporan di samping dokumen" width="900" height="1350" loading="lazy" />
+              <figcaption class="pen">status real-time</figcaption>
+            </figure>
+          </div>
+          <div class="sheet fold checks" data-inview>
+            <div class="checks__title"><h3 class="display h3" style="margin:0">Checklist Kepatuhan</h3><span class="label">6 dari 6</span></div>
+            {why.map(([t, d], i) => (
+              <div class="chk rv" style={`--d:${i * 130}ms`}>
+                <span class="chk__box"><svg viewBox="0 0 26 24" aria-hidden="true"><path class="draw" pathLength="1" d="M3 13l6 7L23 3" /></svg></span>
+                <div><h3 class="display h3">{t}</h3><p>{d}</p></div>
+              </div>
+            ))}
+            <Stamp id="ring-why" class="stamp" center="AKURAT" sub="DISETUJUI" ring="SEMUA TERPENUHI • KONSULTAN BERSERTIFIKAT • " decor />
           </div>
         </div>
       </section>
