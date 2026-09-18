@@ -11,6 +11,15 @@ const pain = [
   { title: "Setup PT Baru, Bingung Struktur Pajak", problem: "PPh Badan vs PPh Final?", fix: "Kami bantu pilih struktur yang tepat.", r: "-0.8deg", carbon: true },
 ];
 
+const services = [
+  { name: "Tax Compliance", img: "svc-compliance", alt: "Formulir pajak, ponsel dengan kalkulator, dan secangkir kopi di meja", r: "2deg", items: ["Pelaporan SPT bulanan & tahunan", "PPh 21, 23, 25, 26, 4(2), PPN", "Filing tepat waktu (kami tracking deadline)"] },
+  { name: "Tax Planning & Optimization", img: "svc-planning", alt: "Tim berdiskusi menyusun strategi di depan whiteboard", r: "-2deg", items: ["Analisa struktur bisnis untuk efisiensi pajak", "Optimalisasi PPh Badan, PPh Final UMKM, PPN", "Pre-transaction tax advisory"] },
+  { name: "Tax Audit Assistance", img: "svc-audit", alt: "Dua orang memeriksa dan menandatangani dokumen di meja", r: "1.5deg", items: ["Pendampingan saat pemeriksaan KPP", "Penyusunan dokumen & klarifikasi", "Negosiasi pengurangan koreksi fiskal"] },
+  { name: "Restitusi & Pengembalian Pajak", img: "svc-restitusi", alt: "Dokumen laporan pendapatan dan checklist pajak dengan ponsel kalkulator", r: "-1.5deg", items: ["Analisa kelayakan restitusi", "Persiapan dokumen", "Pendampingan proses pemeriksaan"] },
+  { name: "Tax Setup Bisnis Baru", img: "svc-setup", alt: "Dua rekan kerja mengerjakan laptop di kantor kecil", r: "2.5deg", items: ["Konsultasi pemilihan badan usaha", "Pendaftaran NPWP, PKP", "Setup chart of account & tax structure"] },
+  { name: "Tax for Expatriate & Cross-Border", img: "svc-expat", alt: "Jabat tangan di atas dokumen kesepakatan bisnis", r: "-2deg", items: ["Tax filing untuk WNA bekerja di Indonesia", "Tax treaty analysis", "Transfer pricing documentation"] },
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -172,6 +181,45 @@ const ld = {
           </div>
         </div>
       </section>
+
+      <!-- Services -->
+      <section class="sec sec--sheet" id="layanan">
+        <div class="wrap">
+          <div class="head head--split">
+            <h2 class="display h2">Layanan Konsultasi Pajak Lengkap</h2>
+            <p class="lede" style="--d:100ms">Dari compliance harian hingga strategi pajak jangka panjang, semua dalam satu tim.</p>
+          </div>
+          <div class="svc">
+            <ul class="svc__list">
+              {services.map((s, i) => (
+                <li class="svc__item">
+                  <h3 style="margin:0">
+                    <button class="svc__btn" type="button" aria-expanded="false" aria-controls={`svc-panel-${i}`} id={`svc-btn-${i}`}><span>{s.name}</span><i aria-hidden="true"></i></button>
+                  </h3>
+                  <div class="svc__panel" id={`svc-panel-${i}`} role="region" aria-labelledby={`svc-btn-${i}`}>
+                    <div>
+                      <img class="svc__inline" src={`/img/${s.img}.jpg`} alt={s.alt} width="1100" height="733" loading="lazy" />
+                      <ul class="tick-list">{s.items.map((it) => <li>{it}</li>)}</ul>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <div class="svc__stage" aria-hidden="true">
+              {services.map((s, i) => (
+                <div class="svc__print" style={`--r:${s.r}`}>
+                  <figure class="proof">
+                    <span class="marks"></span>
+                    <svg class="reg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" /><path d="M12 1v22M1 12h22" /></svg>
+                    <img src={`/img/${s.img}.jpg`} alt="" width="1100" height="733" loading="lazy" />
+                    <figcaption class="proof__cap pen">{s.name}</figcaption>
+                  </figure>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="foot on-dark">
@@ -234,6 +282,19 @@ const ld = {
         });
         co.observe(el);
       });
+
+      // services: one open at a time, photo print follows
+      const btns = [...document.querySelectorAll<HTMLButtonElement>(".svc__btn")];
+      const prints = [...document.querySelectorAll<HTMLElement>(".svc__print")];
+      const open = (i: number) =>
+        btns.forEach((b, j) => {
+          const on = i === j;
+          b.setAttribute("aria-expanded", String(on));
+          document.getElementById(b.getAttribute("aria-controls")!)?.toggleAttribute("data-open", on);
+          prints[j]?.classList.toggle("is-on", on);
+        });
+      btns.forEach((b, i) => b.addEventListener("click", () => open(i)));
+      open(0);
 
       // mobile menu closes after picking a link
       document.querySelectorAll(".menu a").forEach((a) => a.addEventListener("click", () => a.closest("details")?.removeAttribute("open")));
