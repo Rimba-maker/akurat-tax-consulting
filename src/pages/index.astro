@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Stamp from "../components/Stamp.astro";
 
 const ld = {
   "@context": "https://schema.org",
@@ -73,6 +74,64 @@ const ld = {
     </header>
 
     <main id="konten">
+      <!-- Hero -->
+      <section class="hero on-dark">
+        <Stamp id="ring-bg" class="hero__ring" ring="PAJAK TEPAT • BISNIS LANCAR • PAJAK TEPAT • BISNIS LANCAR • " center="AKURAT" decor />
+        <div class="hero__grid">
+          <div class="hero__copy">
+            <h1 class="display h1">Pajak Bukan Beban, Tapi <mark class="marker marker--full">Strategi.</mark></h1>
+            <p class="lede">Konsultan pajak bersertifikat A & B yang membantu UMKM, startup, dan perusahaan menengah mengelola compliance, optimalisasi, dan pelaporan dengan presisi.</p>
+            <div class="hero__cta">
+              <a href="#konsultasi" class="btn">Konsultasi Gratis 30 Menit <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+              <a href="#layanan" class="btn btn--line">Lihat Layanan</a>
+            </div>
+            <p class="hero__note">Tanpa biaya. Tanpa komitmen.</p>
+          </div>
+
+          <div class="collage">
+            <figure class="print" style="margin:0">
+              <span class="tape tape--a"></span><span class="tape tape--b"></span>
+              <img src="/img/hero-tax-form.jpg" alt="Tangan mengisi formulir pajak 1040 di samping kalkulator" width="1400" height="933" fetchpriority="high" />
+              <figcaption class="pen">pajak tepat.</figcaption>
+            </figure>
+
+            <article class="sheet fold spt" aria-label="Contoh ilustrasi formulir SPT Masa PPN">
+              <svg class="clip" viewBox="0 0 26 64" aria-hidden="true"><use href="#i-clip" /></svg>
+              <h3>SPT Masa PPN</h3>
+              <div class="spt__meta"><span>NPWP 01.234.567.8-091.000</span><span>Masa: Okt 2026</span></div>
+              <div class="spt__row"><span>Pajak Keluaran</span><b style="--d:0.7s">Rp 84.250.000</b></div>
+              <div class="spt__row"><span>Pajak Masukan</span><b style="--d:1.1s">Rp 61.900.000</b></div>
+              <div class="spt__row"><span>Kurang Bayar</span><b style="--d:1.5s">Rp 22.350.000</b></div>
+              <div class="spt__row spt__row--due"><span>Batas lapor</span><b style="--d:1.9s">30 Nov 2026</b></div>
+              <ul class="spt__checks">
+                {["Dokumen lengkap", "Perhitungan diverifikasi", "Dijadwalkan lapor"].map((c, i) => (
+                  <li><span class="spt__box"><svg viewBox="0 0 26 24" aria-hidden="true"><path class="draw" pathLength="1" d="M3 13l6 7L23 3" style={`--d:${2.5 + i * 0.3}s`} /></svg></span>{c}</li>
+                ))}
+              </ul>
+              <p class="spt__foot">CONTOH ILUSTRASI · ANGKA FIKTIF</p>
+            </article>
+
+            <Stamp id="ring-hero" class="stamp" center="AKURAT" sub="DIPERIKSA" label="Stempel Akurat: diperiksa" />
+            <div class="sticky"><p class="pen" style="margin:0">Lapor sebelum 30 Nov!</p></div>
+          </div>
+        </div>
+
+        <div class="receipt">
+          <div class="receipt__in">
+            <ul>
+              <li class="leader"><span>Klien aktif</span><i></i><b class="num"><span data-count="200">200</span>+</b></li>
+              <li class="leader"><span>Pengalaman</span><i></i><b class="num">12+ tahun</b></li>
+              <li class="leader"><span>Response time</span><i></i><b class="num">&lt; 4 jam</b></li>
+            </ul>
+            <ul>
+              <li class="leader"><span>Bersertifikat</span><i></i><b>USKP-A &amp; B</b></li>
+              <li class="leader"><span>Terdaftar</span><i></i><b>Kemenkeu</b></li>
+              <li class="leader"><span>Kantor</span><i></i><b>JKT · SBY · BDG</b></li>
+            </ul>
+            <div class="barcode" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="foot on-dark">
@@ -116,6 +175,25 @@ const ld = {
         { threshold: 0.15, rootMargin: "0px 0px -6% 0px" },
       );
       document.querySelectorAll(".rv, .marker, [data-inview]").forEach((el) => io.observe(el));
+
+      // count-up
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
+        const n = Number(el.dataset.count);
+        const co = new IntersectionObserver(([e]) => {
+          if (!e.isIntersecting) return;
+          co.disconnect();
+          if (reduce) return;
+          const t0 = performance.now();
+          const tick = (t: number) => {
+            const p = Math.min(1, (t - t0) / 1400);
+            el.textContent = String(Math.round(n * (1 - (1 - p) ** 3)));
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+        co.observe(el);
+      });
 
       // mobile menu closes after picking a link
       document.querySelectorAll(".menu a").forEach((a) => a.addEventListener("click", () => a.closest("details")?.removeAttribute("open")));
