@@ -488,6 +488,56 @@ const ld = {
           </div>
         </div>
       </section>
+
+      <!-- Contact -->
+      <section class="sec sec--cobalt on-dark" id="konsultasi">
+        <div class="wrap contact">
+          <div>
+            <h2 class="display h2">Konsultasi Gratis <span class="marker marker--full">30 Menit</span></h2>
+            <p class="lede" style="--d:100ms">Ceritakan masalah pajak Anda. Kami akan analisa dan memberikan rekomendasi awal tanpa biaya. Tidak ada commitment.</p>
+            <a href="https://wa.me/" class="btn btn--line" rel="noopener">Atau langsung ke WhatsApp <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+            <figure class="print contact__print rv" style="margin-bottom:0">
+              <span class="tape"></span>
+              <img src="/img/contact-consult.jpg" alt="Konsultan menjelaskan dokumen kepada klien di sofa" width="1100" height="733" loading="lazy" />
+              <figcaption class="pen">tanpa komitmen</figcaption>
+            </figure>
+          </div>
+          <div class="sheet form rv">
+            <Stamp id="ring-free" class="stamp" center="GRATIS" sub="30 MENIT" ring="KONSULTASI AWAL • TANPA KOMITMEN • " decor />
+            <div class="form__title"><h3 class="display h3" style="margin:0">Formulir Konsultasi</h3></div>
+            <form id="form" novalidate>
+              <div class="fields">
+                <div class="field"><label class="label" for="f-nama">Nama</label><input id="f-nama" name="nama" type="text" autocomplete="name" placeholder="Nama lengkap" required /></div>
+                <div class="field"><label class="label" for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="email@perusahaan.com" required /></div>
+                <div class="field"><label class="label" for="f-wa">WhatsApp</label><input id="f-wa" name="wa" type="tel" autocomplete="tel" placeholder="+62 8xx-xxxx-xxxx" required /></div>
+                <div class="field"><label class="label" for="f-pt">Nama Perusahaan</label><input id="f-pt" name="perusahaan" type="text" autocomplete="organization" placeholder="PT Contoh Perusahaan" /></div>
+                <div class="field">
+                  <label class="label" for="f-tipe">Tipe Bisnis</label>
+                  <select id="f-tipe" name="tipe">
+                    <option value="">Pilih tipe bisnis</option>
+                    <option>F&amp;B / Restoran</option><option>E-commerce / Retail</option><option>Konstruksi / Properti</option><option>Tech / Startup</option><option>Healthcare</option><option>Creative / Agency</option><option>Manufaktur</option><option>Profesional Services</option><option>Lainnya</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="label" for="f-omzet">Omzet</label>
+                  <select id="f-omzet" name="omzet">
+                    <option value="">Pilih range omzet</option>
+                    <option>&lt; Rp 500 jt / tahun</option><option>Rp 500 jt - Rp 4,8 M / tahun</option><option>Rp 4,8 M - Rp 50 M / tahun</option><option>&gt; Rp 50 M / tahun</option>
+                  </select>
+                </div>
+                <div class="field wide"><label class="label" for="f-pesan">Pesan</label><textarea id="f-pesan" name="pesan" rows="4" placeholder="Ceritakan kebutuhan pajak Anda"></textarea></div>
+              </div>
+              <button type="submit" class="btn btn--ink">Jadwalkan Konsultasi <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+              <p class="form__alt">Untuk respon lebih cepat, hubungi via <a class="link-draw" href="https://wa.me/" rel="noopener">WhatsApp</a>.</p>
+            </form>
+            <div class="form__ok" role="status">
+              <Stamp id="ring-ok" center="DITERIMA" sub="AKURAT" ring="PERMINTAAN KONSULTASI • KAMI HUBUNGI ANDA • " decor />
+              <h3 class="display h3">Terima kasih, formulir Anda kami terima.</h3>
+              <p class="mute" style="margin:0.6rem 0 0">Konsultan kami akan menghubungi Anda dalam 4 jam kerja.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="foot on-dark">
@@ -563,6 +613,14 @@ const ld = {
         });
       btns.forEach((b, i) => b.addEventListener("click", () => open(i)));
       open(0);
+
+      // form: no backend yet, show the stamped confirmation
+      const form = document.querySelector<HTMLFormElement>("#form");
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) return form.reportValidity();
+        form.closest(".form")?.classList.add("sent");
+      });
 
       // mobile menu closes after picking a link
       document.querySelectorAll(".menu a").forEach((a) => a.addEventListener("click", () => a.closest("details")?.removeAttribute("open")));
