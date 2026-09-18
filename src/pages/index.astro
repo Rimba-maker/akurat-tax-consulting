@@ -33,6 +33,17 @@ const once = [
   ["Tax setup PT baru", "mulai Rp 4 jt"],
 ];
 
+const industries = [
+  { t: "t1", name: "F&B & Restoran", tax: "PB1, PPh Final UMKM, multi-outlet", img: "ind-fnb", alt: "Pemilik restoran memegang tablet di area makan" },
+  { t: "t2", name: "E-commerce & Retail", tax: "Marketplace tax, omnichannel", img: "ind-ecom", alt: "Pemilik toko melayani pembayaran ponsel di kasir" },
+  { t: "t3", name: "Konstruksi & Properti", tax: "PPh Final konstruksi, PPN, BPHTB", img: "ind-konstruksi", alt: "Arsitek berhelm meninjau gambar proyek" },
+  { t: "t4", name: "Tech & SaaS Startup", tax: "Stock option, R&D incentive, capital raising", img: "ind-tech", alt: "Tim startup bekerja dengan laptop, dilihat dari atas" },
+  { t: "t5", name: "Healthcare & Clinic", tax: "PPh Profesi, BPJS compliance", img: "ind-health", alt: "Staf klinik di meja resepsionis" },
+  { t: "t6", name: "Creative & Agency", tax: "PPh 21 freelancer, project-based tax", img: "ind-creative", alt: "Papan tulis penuh sticky notes hasil brainstorming" },
+  { t: "t7", name: "Manufaktur", tax: "PPN PPnBM, import-export, fasilitas BKPM", img: "ind-manufaktur", alt: "Pekerja pabrik tekstil melipat produk di lini produksi" },
+  { t: "t8", name: "Profesional Services", tax: "Konsultan, akuntan, pengacara", img: "ind-profesional", alt: "Profesional memeriksa dokumen di meja kerja dekat jendela" },
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -258,6 +269,27 @@ const ld = {
               <h3 class="label">Butuh layanan sekali jalan?</h3>
               <ul>{once.map(([n, v]) => <li class="leader"><span>{n}</span><i></i><b class="num">{v}</b></li>)}</ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Industries -->
+      <section class="sec sec--sheet" id="industri">
+        <div class="wrap">
+          <div class="head head--split">
+            <h2 class="display h2">Spesialis Industri</h2>
+            <p class="lede" style="--d:100ms">Setiap industri punya kompleksitas pajak yang berbeda. Tim kami berpengalaman di:</p>
+          </div>
+          <div class="mosaic">
+            {industries.map((x, i) => (
+              <article class={`tile rv rv--pop ${x.t}`} style={`--d:${(i % 4) * 90}ms`}>
+                <img src={`/img/${x.img}.jpg`} alt={x.alt} loading="lazy" />
+                <div class="tag">
+                  <h3 class="display h3">{x.name}</h3>
+                  <p>{x.tax}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
