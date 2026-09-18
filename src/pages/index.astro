@@ -67,6 +67,15 @@ const steps = [
   { t: "Onboarding & Service", d: "Data collection, akses sistem, kickoff meeting.", r: "8deg" },
 ];
 
+const faq = [
+  ["Apa beda PPh Final UMKM 0,5% vs PPh Badan 22%?", "PPh Final cocok untuk omzet < Rp 4,8 M/tahun dan lebih sederhana. PPh Badan untuk omzet di atasnya: lebih kompleks, tapi banyak biaya yang bisa dikurangkan (deductible)."],
+  ["Apakah konsultan pajak harus bersertifikasi USKP?", "Tidak wajib, tapi sangat dianjurkan. USKP adalah sertifikasi resmi DJP yang menjamin kompetensi dan akuntabilitas."],
+  ["Berapa lama proses restitusi PPN?", "12 bulan standar (UU HPP), bisa lebih cepat untuk wajib pajak patuh."],
+  ["Apakah saya wajib lapor jika tidak ada transaksi?", "Ya. SPT bulanan dan tahunan tetap wajib dilaporkan (nihil pun) untuk menghindari denda."],
+  ["Bisakah konsultan pajak mewakili saya saat diperiksa KPP?", "Bisa, dengan surat kuasa khusus. Konsultan kami berpengalaman dalam defense audit."],
+  ["Bagaimana sistem fee Akurat?", "Monthly retainer untuk layanan berulang, project-based untuk layanan sekali jalan (audit, restitusi). Bisa hybrid sesuai kebutuhan."],
+];
+
 const ld = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -415,6 +424,27 @@ const ld = {
               <blockquote style="margin:0"><p>Dapat SP2DK pertama kali, panik banget. Akurat handle dari respon sampai dispute resolution. Hasilnya zero koreksi.</p></blockquote>
               <figcaption class="who"><b>Pak Bayu, Owner</b><span>Restoran Chain 8 Outlet</span></figcaption>
             </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="sec sec--sheet" id="faq">
+        <div class="wrap faq">
+          <div class="faq__aside">
+            <h2 class="display h2">Pertanyaan Umum Seputar Pajak</h2>
+            <div class="faq__note rv" style="--d:150ms">
+              <p class="pen">Belum ketemu jawabannya? Tanya langsung ke kami.</p>
+              <a class="link-draw" href="https://wa.me/" rel="noopener">Chat via WhatsApp</a>
+            </div>
+          </div>
+          <div>
+            {faq.map(([q, a], i) => (
+              <details class="qa" name="faq" open={i === 0}>
+                <summary><span>{q}</span><i class="pm" aria-hidden="true"></i></summary>
+                <p>{a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
