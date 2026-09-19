@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import Stamp from "../components/Stamp.astro";
 
+const img = (name: string) => `${import.meta.env.BASE_URL.replace(/\/$/, "")}/img/${name}.jpg`;
+
 const pain = [
   { title: "Bingung Lapor SPT Bulanan/Tahunan", problem: "Salah lapor = denda Rp100k - jutaan per bulan.", fix: "Kami handle semua filing tepat waktu.", r: "-1.2deg" },
   { title: "Pajak Selalu Lebih Besar Dari Kompetitor", problem: "Mungkin Anda belum optimalisasi.", fix: "Kami analisa struktur pajak Anda.", r: "1.6deg", carbon: true },
@@ -171,7 +173,7 @@ const ld = {
           <div class="collage">
             <figure class="print" style="margin:0">
               <span class="tape tape--a"></span><span class="tape tape--b"></span>
-              <img src="/img/hero-tax-form.jpg" alt="Tangan mengisi formulir pajak 1040 di samping kalkulator" width="1400" height="933" fetchpriority="high" />
+              <img src={img("hero-tax-form")} alt="Tangan mengisi formulir pajak 1040 di samping kalkulator" width="1400" height="933" fetchpriority="high" />
               <figcaption class="pen">pajak tepat.</figcaption>
             </figure>
 
@@ -224,7 +226,7 @@ const ld = {
             <div class="pain__print rv">
               <figure class="print" style="margin:0">
                 <span class="tape"></span>
-                <img src="/img/pain-need-help.jpg" alt="Formulir pajak dengan sticky note bertuliskan Need help?" width="1000" height="1500" loading="lazy" />
+                <img src={img("pain-need-help")} alt="Formulir pajak dengan sticky note bertuliskan Need help?" width="1000" height="1500" loading="lazy" />
                 <figcaption class="pen">familier? itu tandanya.</figcaption>
               </figure>
             </div>
@@ -260,7 +262,7 @@ const ld = {
                   </h3>
                   <div class="svc__panel" id={`svc-panel-${i}`} role="region" aria-labelledby={`svc-btn-${i}`}>
                     <div>
-                      <img class="svc__inline" src={`/img/${s.img}.jpg`} alt={s.alt} width="1100" height="733" loading="lazy" />
+                      <img class="svc__inline" src={img(s.img)} alt={s.alt} width="1100" height="733" loading="lazy" />
                       <ul class="tick-list">{s.items.map((it) => <li>{it}</li>)}</ul>
                     </div>
                   </div>
@@ -273,7 +275,7 @@ const ld = {
                   <figure class="proof">
                     <span class="marks"></span>
                     <svg class="reg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" /><path d="M12 1v22M1 12h22" /></svg>
-                    <img src={`/img/${s.img}.jpg`} alt="" width="1100" height="733" loading="lazy" />
+                    <img src={img(s.img)} alt="" width="1100" height="733" loading="lazy" />
                     <figcaption class="proof__cap pen">{s.name}</figcaption>
                   </figure>
                 </div>
@@ -321,7 +323,7 @@ const ld = {
           <div class="mosaic">
             {industries.map((x, i) => (
               <article class={`tile rv rv--pop ${x.t}`} style={`--d:${(i % 4) * 90}ms`}>
-                <img src={`/img/${x.img}.jpg`} alt={x.alt} loading="lazy" />
+                <img src={img(x.img)} alt={x.alt} loading="lazy" />
                 <div class="tag">
                   <h3 class="display h3">{x.name}</h3>
                   <p>{x.tax}</p>
@@ -340,7 +342,7 @@ const ld = {
             <p class="lede" style="--d:100ms">Kami tidak hanya mengurus pajak. Kami membangun kepercayaan, satu checklist demi satu checklist.</p>
             <figure class="print why__print rv" style="margin-bottom:0">
               <span class="tape"></span>
-              <img src="/img/why-dashboard.jpg" alt="Laptop menampilkan dashboard laporan di samping dokumen" width="900" height="1350" loading="lazy" />
+              <img src={img("why-dashboard")} alt="Laptop menampilkan dashboard laporan di samping dokumen" width="900" height="1350" loading="lazy" />
               <figcaption class="pen">status real-time</figcaption>
             </figure>
           </div>
@@ -368,7 +370,7 @@ const ld = {
             {team.map((m, i) => (
               <article class="sheet dossier rv rv--tilt" style={`--r:${m.r};--pos:${m.pos};--d:${i * 110}ms`}>
                 <svg class="clip" viewBox="0 0 26 64" aria-hidden="true"><use href="#i-clip" /></svg>
-                <img src={`/img/${m.img}.jpg`} alt={`Foto ${m.name}`} width="700" height="875" loading="lazy" />
+                <img src={img(m.img)} alt={`Foto ${m.name}`} width="700" height="875" loading="lazy" />
                 <h3 class="display h3">{m.name}</h3>
                 <p class="dossier__role">{m.role}</p>
                 <div class="chips">{m.chips.map((c) => <span class="chip">{c}</span>)}</div>
@@ -403,7 +405,7 @@ const ld = {
           <figure class="proof proc__print rv">
             <span class="marks" aria-hidden="true"></span>
             <svg class="reg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="6" /><path d="M12 1v22M1 12h22" /></svg>
-            <img src="/img/process-meeting.jpg" alt="Konsultan dan klien berdiskusi di meja rapat penuh dokumen" width="1100" height="733" loading="lazy" />
+            <img src={img("process-meeting")} alt="Konsultan dan klien berdiskusi di meja rapat penuh dokumen" width="1100" height="733" loading="lazy" />
             <figcaption class="proof__cap pen">ngobrol dulu</figcaption>
           </figure>
         </div>
@@ -467,7 +469,7 @@ const ld = {
             <a href="#blog" aria-disabled="true" class="post post--lead rv">
               <figure class="lead-img">
                 <svg class="clip" viewBox="0 0 26 64" aria-hidden="true"><use href="#i-clip" /></svg>
-                <div class="lead-img__frame"><img src={`/img/${posts[0].img}.jpg`} alt={posts[0].alt} width="1100" height="733" loading="lazy" /></div>
+                <div class="lead-img__frame"><img src={img(posts[0].img)} alt={posts[0].alt} width="1100" height="733" loading="lazy" /></div>
               </figure>
               <h3 class="display h3">{posts[0].t}</h3>
               <p>{posts[0].d}</p>
@@ -476,7 +478,7 @@ const ld = {
             <div>
               {posts.slice(1).map((p) => (
                 <a href="#blog" aria-disabled="true" class="post post--row">
-                  <img src={`/img/${p.img}.jpg`} alt={p.alt} width="900" height="600" loading="lazy" />
+                  <img src={img(p.img)} alt={p.alt} width="900" height="600" loading="lazy" />
                   <div>
                     <h3 class="display h3">{p.t}</h3>
                     <p>{p.d}</p>
@@ -498,7 +500,7 @@ const ld = {
             <a href="https://wa.me/" class="btn btn--line" rel="noopener">Atau langsung ke WhatsApp <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow" /></svg></a>
             <figure class="print contact__print rv" style="margin-bottom:0">
               <span class="tape"></span>
-              <img src="/img/contact-consult.jpg" alt="Konsultan menjelaskan dokumen kepada klien di sofa" width="1100" height="733" loading="lazy" />
+              <img src={img("contact-consult")} alt="Konsultan menjelaskan dokumen kepada klien di sofa" width="1100" height="733" loading="lazy" />
               <figcaption class="pen">tanpa komitmen</figcaption>
             </figure>
           </div>
