@@ -8,6 +8,7 @@ const prod = process.env.GITHUB_ACTIONS === "true";
 export default defineConfig({
   site: prod ? "https://rimba-maker.github.io" : undefined,
   base: prod ? "/akurat-tax-consulting" : "/",
+  compressHTML: true,
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
